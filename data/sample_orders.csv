@@ -1,0 +1,28 @@
+type,id,side,price,qty,tif
+# --- build the walkthrough book ---
+A,4,S,502.00,10,GTC
+A,1,S,501.00,5,GTC
+A,2,S,501.00,3,GTC
+A,3,B,499.00,4,GTC
+A,5,B,498.00,10,GTC
+A,6,B,498.00,5,GTC
+# case 1: no match, rests as new best bid
+A,8,B,500.00,6,GTC
+C,8,,,,                 # cancel it again
+# case 3: partial fill at 501, 4 rest at 501
+A,10,B,501.00,12,GTC
+# IOC: sells 4 to #10 at 501, nothing rests
+A,11,S,500.50,9,IOC
+# FOK that cannot fill (only 4 bid at >= 499) -> killed, no trades
+A,12,S,499.00,10,FOK
+# FOK that can: takes #3 (4 @ 499) and 1 of #5 @ 498
+A,13,S,498.00,5,FOK
+# modify: reduce #6 in place (keeps priority), then move #4 down to 501.50
+X,6,,498.00,2,
+X,4,,501.50,10,
+# market buy sweeps 501.50
+M,14,B,,3,
+# rejects: zero qty, duplicate id, unknown cancel
+A,15,B,497.00,0,GTC
+A,5,B,497.00,1,GTC
+C,999,,,,

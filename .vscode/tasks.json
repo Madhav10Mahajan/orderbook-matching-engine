@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "build", "type": "shell", "command": "make", "group": { "kind": "build", "isDefault": true }, "problemMatcher": ["$gcc"] },
+    { "label": "test (ASan + fuzz)", "type": "shell", "command": "make test", "group": "test", "problemMatcher": ["$gcc"] },
+    { "label": "fuzz (long)", "type": "shell", "command": "make fuzz", "problemMatcher": [] },
+    { "label": "bench", "type": "shell", "command": "make bench", "problemMatcher": [] },
+    { "label": "plot", "type": "shell", "command": "make plot", "problemMatcher": [] },
+    { "label": "demo", "type": "shell", "command": "make run", "problemMatcher": [] }
+  ]
+}

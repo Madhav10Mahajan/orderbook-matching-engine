@@ -1,0 +1,8 @@
+build/
+.DS_Store
+# large generated / downloaded data
+data/generated_orders.csv
+data/*_message_*.csv
+data/*_orderbook_*.csv
+results/generated_*.csv
+__pycache__/
